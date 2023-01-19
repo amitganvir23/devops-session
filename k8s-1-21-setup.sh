@@ -1,6 +1,11 @@
 #!/bin/bash 
 
 ## On Worker and Master Node
+
+## Master Node Configuration - instance name : Ubuntu - ubuntu20.04  - t2.medium - create key pair -network setting , security group set to allow all traffic as of now from anywhere  --> launch instace
+## Worker Node Configuration - instance name : Ubuntu - ubuntu20.04  - t2.micro - use existing key pair for master -network setting  , use existing security group for master - instance number 2 --> launch instace
+
+
 sudo apt update
 
 sudo apt install apt-transport-https ca-certificates curl software-properties-common  -y
