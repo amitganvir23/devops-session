@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: app2-svc
+  labels:
+    app: app2
+    release: 1.0.2
+spec:
+ type: NodePort
+ ports:
+  - port: 80
+    name: app2
+    targetPort: 80
+ selector:
+   app: app2
