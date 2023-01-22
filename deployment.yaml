@@ -1,0 +1,21 @@
+kind: Deployment
+metadata:
+  name: app2
+  labels:
+    app: app2
+    release: 1.0.2
+spec:
+  template:
+    metadata:
+      name: app2
+      labels:
+        app: app2
+        release: 1.0.2
+    spec:
+      containers:
+      - name: app1
+        image: nginx
+  replicas: 4
+  selector:
+    matchLabels:
+      app: app2
