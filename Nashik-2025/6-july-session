@@ -102,3 +102,12 @@ docker ps
 http://<ec2-public-ip>:8085
 --------------------------------------
 
+------ How to run Mariadb Database Container/app
+docker run -itd --name mariadb -e ALLOW_EMPTY_PASSWORD=yes bitnami/mariadb:latest
+docker exec -it mariadb bash
+Exit
+
+
+
+
+
