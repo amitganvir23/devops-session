@@ -8,11 +8,17 @@ systemctl status docker
 
 
 ------------------
+---- how to run container
 docker run -itd --name c1 busybox:latest echo "Amit"
 docker ps -a
+docker logs c1
+
+
+docker run -itd --name c2 busybox sh
 
 
 #docker run -itd --name c3 busybox:latest sleep 1d
+or
 
 # docker exec -it <ContainerID/Name> <Shell-Name>
 / # exit
