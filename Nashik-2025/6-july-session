@@ -108,6 +108,14 @@ docker exec -it mariadb bash
 Exit
 
 
+---- How to remove Docker Images
+docker images
+docker rmi <image:tag> or <Image ID>
+
+
+
+
+
 
 
 

@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: prod
+  name: amit3
+  labels:
+    app: amit3
+spec:
+  template:
+    metadata:
+      name: amit3
+      labels:
+        app: amit3
+    spec:
+     containers:
+     - name: amit3
+       image: nginx:latest 
+  replicas: 3
+  selector:
+    matchLabels:
+      app: amit3

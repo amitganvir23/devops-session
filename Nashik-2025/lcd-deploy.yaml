@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: prod
+  name: lcd
+  labels:
+    app: lcd
+spec:
+  template:
+    metadata:
+      name: lcd
+      labels:
+        app: lcd
+    spec:
+     containers:
+     - name: lcd
+       image: amitganvir6/lcd:v11
+  replicas: 1
+  selector:
+    matchLabels:
+      app: lcd

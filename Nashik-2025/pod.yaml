@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  namespace: prod
+  name: amit1
+  labels:
+    type: frontend
+    app: fe
+spec:
+  containers:
+  - name: amit1
+    image: nginx:latest

@@ -1,0 +1,133 @@
+54.158.80.3
+sudo su -
+kubectl get nodes
+
+kubectl get namespace
+or
+kubectl get ns
+
+## To create namespace/project
+kubectl create ns project-a
+kubectl create ns prod
+
+ docker run -itd --name fe1 nginx:latest
+ 
+
+## To run nginx pod/container
+kubectl run amit1 --image nginx:latest
+
+## To check pods/Containers
+kubectl get pods
+
+### To describe pods/Container
+kubectl describe pod chetanapatil
+
+## To check Container/pod logs
+kubectl logs amit2
+
+## To delete Pod
+kubectl delete pod amit2
+
+## Create a pod using yaml file
+apiVersion: v1
+kind: Pod
+metadata:
+  namespace: prod
+  name: amit3
+  labels:
+    type: fe
+spec:
+  containers:
+  - name: amit3
+    image: nginx:latest
+
+## how to apply your file. How to run pod using yaml file
+kubectl create -f pod.yaml
+
+## to apply the new changes
+kubectl apply -f amit2.yaml
+
+## How to create pod using Deployment Yaml file
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: prod
+  name: amit3
+  labels:
+    app: amit3
+spec:
+  template:
+    metadata:
+      name: amit3
+      labels:
+        app: amit3
+    spec:
+     containers:
+     - name: amit3
+       image: nginx
+  replicas: 5
+  selector:
+    matchLabels:
+      app: amit3
+
+
+kubectl apply -f amit3-deploy.yaml
+kubectl -n prod get deploy
+kubectl -n prod get pod
+
+## TO delete objects using Yaml file
+kubectl delete -f amit3-deploy.yaml
+
+
+root@ip-172-31-92-1:~# cat service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: fe12-service
+  labels:
+    app: fe12
+spec:
+  type: NodePort
+  ports:
+    - port: 80
+      name: http
+  selector:
+    app: fe12
+
+root@ip-172-31-92-1:~# kubectl -n amit create -f service.yaml
+root@ip-172-31-92-1:~# kubectl -n amit get service
+root@ip-172-31-92-1:~# kubectl -n amit delete -f service.yaml
+--------------------------
+
+### TO create DB container using Deployment object
+vim db.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db
+  labels:
+    app: db
+spec:
+  template:
+    metadata:
+      name: db
+      labels:
+        app: db
+    spec:
+     containers:
+     - name: db
+       image: bitnami/mariadb:latest
+       ports:
+        - containerPort: 3306
+       env:
+        - name: MARIADB_ROOT_PASSWORD
+          value: "1234"
+  replicas: 1
+  selector:
+    matchLabels:
+      app: db
+
+kubectl apply -f db.yaml
+kubectl get po
+## to jump in the pod or container
+kubectl exec -it <POD-NAME> -- bash
